@@ -13,27 +13,34 @@ you should get the following rows:
 * `\. "$HOME/.nvm/nvm.sh"`
 * `nvm install 24` 
 
+
+
+## get subscription token
+~~ go buy claude pro/max ~~ - your account will get banned. same for gemini.
+
+to this date 17.2.2026 according to websearch (not a promise!) only openai do not ban subscription accounts using the openclaw (its a 3rd party and violation of ToS, especially if you serve clients).
+
+* so not so legit - buy openai subscription
+* legit - use API (pay as you go) like [openrouter.ai](https://openrouter.ai/) or amazon bedrock
+* legit & super easy - [ollama.com plan](https://ollama.com/blog/openclaw)
+* legit - [synthetic.new](https://synthetic.new/?referral=RgalAYbTxY6qzQ8)
+
+
+
+
 ## install openclaw
+choose provider and subsciption, and terminal will instruct you how to get the token.
+### Linux
 `curl -fsSL https://openclaw.ai/install.sh | bash`
 
-## get claude token
-* go buy claude pro/max
-* open cmd `curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd`
-* or powershell `irm https://claude.ai/install.ps1 | iex`
-
-### YOU MUST READ
-did it say it did not install PATH enviroment variable? if so you need to search for `claude.exe`
-
-usually you can get there by `%USERPROFILE%\.local\bin\claude.exe`
-
-therefor to get the token use `%USERPROFILE%\.local\bin\claude.exe setup-token` and copy the token (usually yellow line, start with `sk`)
-
-COPY THE TOKEN
+for windows see at the end
 
 ## initialize openclaw
 `openclaw onboard --install-daemon`
 
-follow instructions, skip where you can, choose anthropic provider. if you bought claude pro use Haiku, else use opus 4.6
+follow instructions, skip where you can, choose your provider and model.
+
+follow instructions for communication channel, easiest it Telegram (built for bots)
 
 
 
@@ -44,7 +51,7 @@ if you want to open your dashboad ask him to forward port of the dashboard to XX
 
 result would be `https://<your-ip>:XXXXX?token=02934092834.....`
 
-might be needing to ask him to help make everything connect
+might be needing to ask him to help make everything connect, just send him print screens
 
 
 # SECURITY
@@ -68,6 +75,23 @@ honeslty anything not anthropic for token just makes life hard
 
 
 
+
+
+
+
+
+### Windows install
+* open cmd `curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd`
+* or powershell `irm https://claude.ai/install.ps1 | iex`
+
+### YOU MUST READ
+did it say it did not install PATH enviroment variable? if so you need to search for `claude.exe`
+
+usually you can get there by `%USERPROFILE%\.local\bin\claude.exe`
+
+therefor to get the token use `%USERPROFILE%\.local\bin\claude.exe setup-token` and copy the token (usually yellow line, start with `sk`)
+
+COPY THE TOKEN
 
 
 

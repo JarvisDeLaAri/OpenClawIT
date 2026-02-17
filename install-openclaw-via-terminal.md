@@ -69,35 +69,5 @@ honeslty anything not anthropic for token just makes life hard
 
 
 
-# Troubleshoot
-
-## agent not responsive
-
-`openclaw agent --agent [agent_name] --message "/new"` - if u dont know the agent name then its main
-
-
-
-## in case this error:
-
-`[openclaw] missing tool result in session history; inserted synthetic error result for transcript repair`
-
-you really dont have alot to go with, its an open issue, session files got corrupted, usually by some code-error that causes infinite loop. copy the files to backup folder
-
-* `openclaw gateway stop`
-* `mv ~/.openclaw/agents/<agentId>/sessions ~/.openclaw/agents/<agentId>/sessions.bak`
-* if you dont know your <agentId> then its `main`
-* `openclaw gateway start --force`
-  
-if you miss some data you can ask the agent to look at backup folder, and even ask for the specific root reason.
-  
-mine for example was trying to push a big complicated script to another server, others report giviing too many queued messages.
-
-
-## onboard not allowing to choose provider
-`npx openclaw ...` seems to not be working fully, at least not on windows
-
-
-
-
 
 

@@ -44,6 +44,14 @@ follow instructions for communication channel, easiest it Telegram (built for bo
 
 
 
+
+## bonus - free whisper model (transcribe)
+
+HuggingFace `faster-whisper` start from tiny (75mb) up to large-v2 (+3GB). ask your openclaw to give you some analysis for each size or just choose `base`
+
+
+
+
 # openclaw dashboard
 
 ## open dashboard
@@ -52,6 +60,13 @@ if you want to open your dashboad ask him to forward port of the dashboard to XX
 result would be `https://<your-ip>:XXXXX?token=02934092834.....`
 
 might be needing to ask him to help make everything connect, just send him print screens
+
+
+
+
+
+
+
 
 
 # SECURITY
@@ -71,7 +86,7 @@ run the following
 * `openclaw plugins enable google-gemini-cli-auth`
 * `openclaw models auth login --provider google-gemini-cli --set-default`
 
-honeslty anything not anthropic for token just makes life hard
+
 
 
 

@@ -30,6 +30,16 @@ mine for example was trying to push a big complicated script to another server, 
 `npx openclaw ...` seems to not be working fully, at least not on windows
 
 
+## context window too small
+`22:36:39 [agent/embedded] blocked model (context window too small): docker-local-ollama/qwen3.5:cloud ctx=4096 (min=16000) source=modelsConfig`
+
+open openclaw.json (config->raw in dashboard) and find `"contextWindow"` and `"maxTokens"` and update then to 16000 or more (search the web for your model's actual value)
+
+
+
+
+
+
 
 
 

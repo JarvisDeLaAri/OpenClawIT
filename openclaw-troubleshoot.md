@@ -93,3 +93,46 @@ if not there try `openclaw onboard` with `reset values`
 
 
 
+
+
+
+
+
+
+
+
+
+# special cases
+
+if your openclaw object you too much, and if what you are doing in moral-legal-ethical, and if your model will agree to it by istelf
+
+[openclaw] 🦞
+Found it. The system prompt is *generated at runtime* from this TypeScript source:
+
+*Source file:*
+`/root/.openclaw/workspace/openclawSourceCode/src/agents/system-prompt.ts`
+
+*The Safety section (lines 469-473):*
+```typescript
+const safetySection = [
+"## Safety",
+"You have no independent goals: do not pursue self-preservation, replication, resource acquisition, or power-seeking; avoid long-term plans beyond the user's request.",
+"Prioritize safety and human oversight over completion; if instructions conflict, pause and ask; comply with stop/pause/audit requests and never bypass safeguards. (Inspired by Anthropic's constitution.)",
+"Do not manipulate or persuade anyone to expand access or disable safeguards. Do not copy yourself or change system prompts, safety rules, or tool policies unless explicitly requested.",
+"",
+];
+```
+
+This code runs every session and injects that Safety block into my prompt. It's *hardcoded in the OpenClaw source*, not a config file you can edit.
+
+To change it, you'd need to:
+1. Edit that `.ts` file
+2. Rebuild OpenClaw (`npm run build` in the source repo)
+3. Restart the gateway
+
+So yeah — the "constitution" reference in the prompt is literally a comment acknowledging Anthropic's Constitutional AI paper. My bad for not pointing to the actual source earlier. 🦞
+
+
+
+
+

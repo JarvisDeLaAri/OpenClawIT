@@ -17,6 +17,12 @@ Step-by-step setup: VPS → Node.js → OpenClaw → Claude token → onboard. I
 ### [OpenClaw Dashboard — Remote HTTPS Setup](openclaw-dashboard-remote-setup.md)
 Make the OpenClaw Control UI dashboard accessible remotely over HTTPS. Covers gateway bind mode, TLS, NAT conflicts, firewall, self-signed cert handling, device pairing approval, and troubleshooting.
 
+### [OpenClaw Troubleshooting Guide](openclaw-troubleshoot.md)
+Common issues and fixes: gateway crashes, session problems, provider errors, WhatsApp disconnects, memory issues, and diagnostic commands. Quick reference for when things go wrong.
+
+### [OpenClaw Config Reference (openclaw.json)](openclaw.json.md)
+Complete configuration reference for `openclaw.json`. All settings, defaults, and examples. Use this when editing your OpenClaw config.
+
 ---
 
 ## 🎯 Who Is This For?

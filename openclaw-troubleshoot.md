@@ -4,6 +4,17 @@
 
 # Troubleshoot OpenClaw
 
+## recover settings
+if you change settings and it stopped working you can rollback `cp ~/.openclaw/openclaw.json.bak ~/.openclaw/openclaw.json`
+
+## crashed completely 
+if nothing works or you get `openclaw: command not found` time to reinstall, dont worry your data will not be lost
+
+* `npm uninstall -g openclaw`
+* `npm install -g openclaw@latest`
+
+
+
 ## agent not responsive
 
 `openclaw agent --agent [agent_name] --message "/new"` - if u dont know the agent name then its main

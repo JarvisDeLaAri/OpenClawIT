@@ -1,0 +1,369 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.2.24",
+    "lastTouchedAt": "2026-02-25T17:39:09.997Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-02-24T17:32:42.392Z",
+    "lastRunVersion": "2026.2.23",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "browser": {
+    "enabled": true,
+    "executablePath": "/usr/bin/chromium-browser",
+    "headless": true,
+    "noSandbox": true,
+    "defaultProfile": "openclaw"
+  },
+  "auth": {
+    "profiles": {
+      "openai-codex:default": {
+        "provider": "openai-codex",
+        "mode": "oauth"
+      },
+      "openrouter:default": {
+        "provider": "openrouter",
+        "mode": "api_key"
+      },
+      "ollama:default": {
+        "provider": "ollama",
+        "mode": "api_key"
+      },
+      "xai:default": {
+        "provider": "xai",
+        "mode": "api_key"
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "ollama": {
+        "baseUrl": "http://127.0.0.1:11434/v1",
+        "models": [
+          {
+            "id": "qwen3.5:cloud",
+            "name": "Qwen 3.5 Cloud",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 256000,
+            "maxTokens": 75000
+          }
+        ]
+      },
+      "xai": {
+        "baseUrl": "https://api.x.ai/v1",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "grok-4",
+            "name": "Grok 4",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 131072,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "ollama/qwen3.5:cloud"
+      },
+      "models": {
+        "openai-codex/gpt-5.3-codex": {
+          "alias": "CODEX"
+        },
+        "ollama/qwen3.5:cloud": {
+          "alias": "QWEN"
+        },
+        "xai/grok-4-1-fast": {
+          "alias": "GROK"
+        },
+        "xai/grok-4": {
+          "alias": "Grok"
+        },
+        "openai-codex/gpt-5.1": {
+          "alias": "GPT"
+        },
+        "openai-codex/gpt-5.1-codex-mini": {
+          "alias": "MINI"
+        }
+      },
+      "workspace": "/root/.openclaw/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "heartbeat": {
+        "every": "2h"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      },
+      "sandbox": {
+        "browser": {
+          "enabled": true,
+          "headless": true
+        }
+      }
+    },
+    "list": [
+      {
+        "id": "main"
+      },
+      {
+        "id": "codex",
+        "name": "codex",
+        "workspace": "/root/.openclaw/workspace-codex",
+        "agentDir": "/root/.openclaw/agents/codex/agent",
+        "model": "openai-codex/gpt-5.3-codex"
+      },
+      {
+        "id": "missdaily",
+        "name": "MissDaily",
+        "workspace": "/root/.openclaw/workspace-missdaily",
+        "agentDir": "/root/.openclaw/agents/missdaily/agent",
+        "model": "ollama/qwen3.5:cloud",
+        "heartbeat": {
+          "every": "16m"
+        }
+      },
+      {
+        "id": "trendy",
+        "name": "trendy",
+        "workspace": "/root/.openclaw/workspace-trendy",
+        "agentDir": "/root/.openclaw/agents/trendy/agent",
+        "model": "ollama/qwen3.5:cloud",
+        "heartbeat": {
+          "every": "21m"
+        }
+      }
+    ]
+  },
+  "tools": {
+    "sessions": {
+      "visibility": "all"
+    },
+    "agentToAgent": {
+      "enabled": true
+    }
+  },
+  "bindings": [
+    {
+      "agentId": "missdaily",
+      "match": {
+        "channel": "discord",
+        "accountId": "missdaily"
+      }
+    },
+    {
+      "agentId": "trendy",
+      "match": {
+        "channel": "discord",
+        "accountId": "trendy"
+      }
+    }
+  ],
+  "messages": {
+    "ackReactionScope": "group-mentions",
+    "tts": {
+      "provider": "edge",
+      "edge": {
+        "enabled": true,
+        "voice": "en-GB-RyanNeural",
+        "lang": "en-GB",
+        "outputFormat": "audio-24khz-48kbitrate-mono-mp3"
+      }
+    }
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "channels": {
+    "whatsapp": {
+      "enabled": true,
+      "dmPolicy": "allowlist",
+      "selfChatMode": true,
+      "allowFrom": [
+        "+972542634114"
+      ],
+      "groupPolicy": "allowlist",
+      "debounceMs": 0,
+      "mediaMaxMb": 50
+    },
+    "discord": {
+      "enabled": true,
+      "allowBots": true,
+      "groupPolicy": "allowlist",
+      "streaming": "off",
+      "allowFrom": [
+        "discord:channel:___GUILD_ID_____:___CHANNEL_g1_ID_____",
+        "discord:channel:___GUILD_ID_____:___CHANNEL_g2_ID_____",
+        "discord:channel:___GUILD_ID_____:___CHANNEL_a1_ID_____",
+        "discord:channel:___GUILD_ID_____:___CHANNEL_a2_ID_____",
+        "discord:channel:___GUILD_ID_____:___CHANNEL_g2_ID_____",
+        "discord:user:___USER_me_ID_____"
+      ],
+      "guilds": {
+        "___GUILD_ID_____": {
+          
+          "requireMention": false,
+          "users": [
+            "___USER_me_ID_____",
+            "___USER_missdaily_ID_____",
+            "___USER_trendy_ID_____"
+          ],
+          "channels": {
+            "___CHANNEL_a1_ID_____": {
+              "allow": true,
+              "requireMention": false
+            },
+            "___CHANNEL_a2_ID_____": {
+              "allow": true,
+              "requireMention": false
+            }
+          }
+        }
+      },
+      "accounts": {
+        "missdaily": {
+          "name": "MissDaily",
+          "token": "__OPENCLAW_REDACTED__",
+          "groupPolicy": "allowlist",
+          "streaming": "off",
+          "guilds": {
+            "___GUILD_ID_____": {
+              "users": [
+                "___USER_me_ID_____",
+                "___USER_missdaily_ID_____",
+                "___USER_trendy_ID_____"
+              ],
+              "channels": {
+                "___CHANNEL_g1_ID_____": {
+                  "allow": true,
+                  "requireMention": false
+                },
+                "___CHANNEL_a1_ID_____": {
+                  "allow": true,
+                  "requireMention": true
+                },
+                "___CHANNEL_a2_ID_____": {
+                  "allow": true,
+                  "requireMention": false
+                },
+                "___CHANNEL_g2_ID_____": {
+                  "allow": true,
+                  "requireMention": false
+                }
+              }
+            }
+          }
+        },
+        "trendy": {
+          "name": "trendy",
+          "token": "__OPENCLAW_REDACTED__",
+          "groupPolicy": "allowlist",
+          "streaming": "off",
+          "guilds": {
+            "___GUILD_ID_____": {
+              "users": [
+                "___USER_me_ID_____",
+                "___USER_missdaily_ID_____",
+                "___USER_trendy_ID_____"
+              ],
+              "channels": {
+                "___CHANNEL_g1_ID_____": {
+                  "allow": true,
+                  "requireMention": false
+                },
+                "___CHANNEL_a1_ID_____": {
+                  "allow": true,
+                  "requireMention": true
+                },
+                "___CHANNEL_a2_ID_____": {
+                  "allow": true,
+                  "requireMention": false
+                },
+                "___CHANNEL_g2_ID_____": {
+                  "allow": true,
+                  "requireMention": false
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "controlUi": {
+      "allowedOrigins": [
+        "https://<your-ip>:<your-port>"
+      ]
+    },
+    "auth": {
+      "mode": "token",
+      "token": "__OPENCLAW_REDACTED__"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "http": {
+      "endpoints": {
+        "chatCompletions": {
+          "enabled": true
+        },
+        "responses": {
+          "enabled": true
+        }
+      }
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "calendar.add",
+        "contacts.add",
+        "reminders.add"
+      ]
+    }
+  },
+  "plugins": {
+    "entries": {
+      "whatsapp": {
+        "enabled": true
+      }
+    }
+  }
+}

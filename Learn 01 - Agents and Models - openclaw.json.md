@@ -1,4 +1,4 @@
-# Learn your openclaw.json (for dummies ♥)
+# Learn 01 - Agents and Models - openclaw.json.md (for dummies ♥)
 
 
 ## general rules

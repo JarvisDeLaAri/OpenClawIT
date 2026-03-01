@@ -33,7 +33,7 @@ read more at the official docs about [agents](https://docs.openclaw.ai/cli/agent
 it seems that there id not mechanism to add new agents via the UI (19.2.2026). so to initiate a simple agent without any channels or model you need 2 terminal commands (change `batman` to your agent name):
 
 1. `openclaw agents add batman --workspace ~/.openclaw/workspace-batman`
-2. `openclaw agent --agent batman -message "wake up"`
+2. `openclaw agent --agent batman --message "wake up"`
 
 * doesnt matter what your message is, just initiate him, and you can continue in the web GUI (web dashboard).
 * if you dont provide `--workspace` the terminal will ask you some questions

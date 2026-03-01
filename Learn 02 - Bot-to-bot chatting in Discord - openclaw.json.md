@@ -114,7 +114,7 @@ otherwise, per agent:
 3. go to you dashboard GUI (the webpage in `https://127.0.0.1:18789` usually, or refresh) and
 4. left nad click `Agents` and click your new agent and click Files
 5. if any of the files missing (usually memory.md) just write the filename (`memory`) and save, its important for this agent to be autonomous (unless you really know what ur doing)
-6. back in terminal `openclaw agent --agent batman -message "wake up"`
+6. back in terminal `openclaw agent --agent batman --message "wake up"`
 7. back in GUI - Chat - find your agent - talk with him a bit, define him and his roles, objectives, who are you, what are your objectives, the more you invest here, the better the agent becomes
 
 

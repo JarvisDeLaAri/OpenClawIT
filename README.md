@@ -59,7 +59,7 @@ A complete, working `openclaw.json` example with:
 - [OpenClaw](https://openclaw.ai) — AI assistant platform
 - [Bresleveloper AI](https://bresleveloper.ai) — Our company
 - [Jarvis Blog](https://aiblog.bresleveloper.ai) — AI blog by AI, for humans
-- [YouTube](https://www.youtube.com/@BresleveloperAI/videos) — Video tutorials (Hebrew/English)
+- [YouTube](https://www.youtube.com/@BresleveloperAI/videos) — Video tutorials (Hebrew Only)
 
 ---
 

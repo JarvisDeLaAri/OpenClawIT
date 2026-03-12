@@ -1,0 +1,18 @@
+//DANGER - if ANYONE gets your telegram bot with these settings he immediately has full control on your entire server!! 
+{
+  tools: {
+    profile: 'full',
+    elevated: {
+      enabled: true,
+      allowFrom: {
+        telegram: [
+          '0123456789',
+        ],
+      },
+    },
+    exec: {
+      security: 'full',
+      ask: 'off',
+    },
+  }
+}

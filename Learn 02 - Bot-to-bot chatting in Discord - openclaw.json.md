@@ -43,6 +43,42 @@ What you need to do
 *IMPORTANT - keep you server like your password! dont add anyone, not frieds not family, this is an opendoor to your server!
 
 
+### use this script:
+if you know how, open F12, and paste this to the console
+
+```
+const permissions = [
+  'View Channels',
+  'Send Messages',
+  'Read Message History',
+  'Embed Links',
+  'Attach Files',
+  'Add Reactions'
+];
+
+const delay = ms => new Promise(r => setTimeout(r, ms));
+
+(async () => {
+  for (const perm of permissions) {
+    const match = [...document.querySelectorAll('*')].find(
+      el => el.textContent.trim() === perm && el.children.length === 0
+    );
+    if (!match) continue;
+
+    let parent = match;
+    while (parent) {
+      const cb = parent.querySelector('[class*="checkboxIndicator__714a9"]');
+      if (cb) { cb.click(); break; }
+      parent = parent.parentElement;
+    }
+
+    await delay(200);
+  }
+})();
+```
+
+
+
 #### save url, server id and channel id
 
 when you click that new channel your url will look like this:

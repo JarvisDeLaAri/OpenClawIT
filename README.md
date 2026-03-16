@@ -6,46 +6,81 @@ Battle-tested guides written by humans and AI assistants, for AI assistants (and
 
 ---
 
-## 📚 Guides
+## Start Here
 
-### [Install OpenClaw via Terminal](install-openclaw-via-terminal.md)
-Step-by-step setup: VPS → Node.js → OpenClaw → provider token → onboard. Includes alternative provider setup (Ollama, Synthetic.new, OpenRouter) and troubleshooting for common issues (session corruption, provider config).
+If you're new to OpenClaw, follow these guides **in this order**.
 
-### [Secure My Linux (OpenClaw) Basics](secure-my-linux-openclaw-basics.md)
-21-step security hardening guide for Ubuntu/Debian VPS running OpenClaw. Covers SSH hardening (port change, crypto, fail2ban), firewall (UFW), kernel sysctl, AppArmor, AIDE file integrity, rootkit detection (rkhunter/chkrootkit), TLS, automated security audits, and monitoring (auth logs, service health). Designed for AI assistants to execute sequentially.
+### 1) [Install OpenClaw via Terminal](install-openclaw-via-terminal.md)
+Start here. This gets OpenClaw running on a VPS or Linux machine, installs Node.js, walks through onboarding, and gives the basic first setup path.
 
-### [OpenClaw Dashboard — Remote HTTPS Setup](openclaw-dashboard-remote-setup.md)
-Make the OpenClaw Control UI dashboard accessible remotely over HTTPS. Covers gateway bind mode, TLS certs, NAT conflicts, firewall, self-signed cert handling, device pairing approval, and troubleshooting.
+### 2) [How to connect OpenAI OAuth / Codex](openai.oauth.md)
+If you want to use OpenAI/Codex with OpenClaw, do this right after installation. This guide explains the OAuth flow, model choice, and the practical difference between ChatGPT and Codex for agents.
 
-### [OpenClaw Troubleshooting Guide](openclaw-troubleshoot.md)
-Common issues and fixes: gateway crashes, session problems, provider errors, WhatsApp disconnects, memory issues, diagnostic commands, and full reinstall steps. Quick reference for when things go wrong.
+### 3) [Learn 01 — Agents and Models (openclaw.json)](Learn%2001%20-%20Agents%20and%20Models%20-%20openclaw.json.md)
+Once OpenClaw works, this is the next step. Learn how to safely edit `openclaw.json`, add agents, add providers, and control models without breaking the install.
 
-### [Learn 01 — Agents and Models (openclaw.json)](Learn%2001%20-%20Agents%20and%20Models%20-%20openclaw.json.md)
-Complete guide to configuring agents and models in `openclaw.json`. Covers:
-- Adding new agents via CLI
-- Configuring providers (subscription, API, PAYG)
-- Setting primary/fallback models
-- Custom provider definitions (Ollama Docker, etc.)
+### 4) [OpenClaw Dashboard — Remote HTTPS Setup](openclaw-dashboard-remote-setup.md)
+After your install is alive, expose the dashboard properly over HTTPS so you can manage the server remotely.
 
-### [Learn 02 — Bot-to-Bot Chatting in Discord](Learn%2002%20-%20Bot-to-bot%20chatting%20in%20Discord%20-%20openclaw.json.md)
-Full walkthrough for creating multi-agent Discord bot conversations. Covers:
-- Discord server/bot setup
-- Agent creation and configuration
-- `openclaw.json` settings for bot-to-bot communication
-- Heartbeat scheduling for autonomous agents
-- Channel/guild allowlists and permissions
-- Troubleshooting and architecture tips
+### 5) [Secure My Linux (OpenClaw) Basics](secure-my-linux-openclaw-basics.md)
+Now harden the machine. This guide is the security baseline for a real VPS running OpenClaw: SSH hardening, firewall, fail2ban, kernel tuning, integrity checks, monitoring, and more.
 
-### [Example Config — my.openclaw.example.json](my.openclaw.example.json)
-A complete, working `openclaw.json` example with:
-- Multiple agents (main, codex, missdaily, trendy)
-- Discord bot-to-bot setup
-- Multi-provider configuration (Ollama, OpenAI Codex, xAI)
-- Tools, bindings, channels, and gateway settings
+### 6) [OpenClaw Troubleshooting Guide](openclaw-troubleshoot.md)
+Keep this nearby the whole time. If onboarding breaks, sessions corrupt, the provider fails, or the gateway acts possessed, this is the repair manual.
 
 ---
 
-## 🎯 Who Is This For?
+## Starter Tutorial Paths
+
+### Path A — First OpenClaw server
+If you just want a solid first setup:
+
+1. [Install OpenClaw via Terminal](install-openclaw-via-terminal.md)
+2. [How to connect OpenAI OAuth / Codex](openai.oauth.md)
+3. [Learn 01 — Agents and Models](Learn%2001%20-%20Agents%20and%20Models%20-%20openclaw.json.md)
+4. [OpenClaw Dashboard — Remote HTTPS Setup](openclaw-dashboard-remote-setup.md)
+5. [Secure My Linux (OpenClaw) Basics](secure-my-linux-openclaw-basics.md)
+6. [OpenClaw Troubleshooting Guide](openclaw-troubleshoot.md)
+
+### Path B — Discord multi-agent setup
+If your goal is Discord bot-to-bot chatting:
+
+1. [Install OpenClaw via Terminal](install-openclaw-via-terminal.md)
+2. [How to connect OpenAI OAuth / Codex](openai.oauth.md)
+3. [Learn 01 — Agents and Models](Learn%2001%20-%20Agents%20and%20Models%20-%20openclaw.json.md)
+4. [Learn 02 — Bot-to-Bot Chatting in Discord](Learn%2002%20-%20Bot-to-bot%20chatting%20in%20Discord%20-%20openclaw.json.md)
+5. [OpenClaw Dashboard — Remote HTTPS Setup](openclaw-dashboard-remote-setup.md)
+6. [Secure My Linux (OpenClaw) Basics](secure-my-linux-openclaw-basics.md)
+7. [OpenClaw Troubleshooting Guide](openclaw-troubleshoot.md)
+
+---
+
+## Full Guide Index
+
+### [Install OpenClaw via Terminal](install-openclaw-via-terminal.md)
+Step-by-step setup for getting OpenClaw installed and onboarded from a terminal session.
+
+### [How to connect OpenAI OAuth / Codex](openai.oauth.md)
+Idiot-proof guide for connecting OpenAI OAuth to OpenClaw and choosing the right Codex model.
+
+### [Learn 01 — Agents and Models (openclaw.json)](Learn%2001%20-%20Agents%20and%20Models%20-%20openclaw.json.md)
+Deep dive into `openclaw.json`: agents, providers, models, defaults, and safer ways to expand your setup.
+
+### [Learn 02 — Bot-to-Bot Chatting in Discord](Learn%2002%20-%20Bot-to-bot%20chatting%20in%20Discord%20-%20openclaw.json.md)
+Walkthrough for setting up Discord bots and multi-agent conversations with OpenClaw.
+
+### [OpenClaw Dashboard — Remote HTTPS Setup](openclaw-dashboard-remote-setup.md)
+Guide for exposing the dashboard remotely with HTTPS, origin config, firewall changes, and pairing approval.
+
+### [Secure My Linux (OpenClaw) Basics](secure-my-linux-openclaw-basics.md)
+Security hardening checklist for Ubuntu/Debian servers running OpenClaw.
+
+### [OpenClaw Troubleshooting Guide](openclaw-troubleshoot.md)
+Fixes for broken installs, corrupted sessions, provider issues, gateway trouble, and full reinstall scenarios.
+
+---
+
+## Who Is This For?
 
 - **OpenClaw users** setting up their first VPS
 - **AI assistants** that need step-by-step server admin guides
@@ -54,7 +89,7 @@ A complete, working `openclaw.json` example with:
 
 ---
 
-## 🔗 Links
+## Links
 
 - [OpenClaw](https://openclaw.ai) — AI assistant platform
 - [Bresleveloper AI](https://bresleveloper.ai) — Our company

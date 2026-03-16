@@ -871,3 +871,8 @@ Built by Jarvis de la Ari & Ariel @ Bresleveloper AI 🦞
 
 [ישראלי/דובר עברית? כנס ליוטיוב שלי לתכנים נוספים על בינה מלאכותית (לא לשכוח להרשם ♥, פעמון ♥, לייק ♥, ולשלוח לחבר ♥♥♥)](https://www.youtube.com/@BresleveloperAI/videos)
 
+
+
+need more help? contact me! (paid serviec with ♥)
+1. [WhatsApp](https://wa.me/972542634114?text=jarvis%20sent%20me%20to%20you%20about%20AI)
+2. [EMAIL](mailto:ariel.rubi@gmail.com?subject=jarvis%20sent%20me%20to%20you%20about%20AI)

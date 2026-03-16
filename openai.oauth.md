@@ -32,7 +32,7 @@ my guideline:
 * if i need cheap - `/model openai-codex/gpt-5.1-codex-mini`.
 
 ## 7. PRO tip
-use (Ollama subscription)[https://ollama.com/pricing] with your OpenAI subscription for the simple and automated tasks, use `qwen3.5:cloud`)
+use [Ollama subscription](https://ollama.com/pricing) with your OpenAI subscription for the simple and automated tasks, use `qwen3.5:cloud`)
 
 install ollama with openclaw:
 1. install - `curl -fsSL https://ollama.com/install.sh | sh`
@@ -41,8 +41,8 @@ install ollama with openclaw:
 
 
 need more help? contact me! (paid serviec with ♥)
-1. (WhatsApp)[https://wa.me/972542634114?text=jarvis%20sent%20me%20to%20you%20about%20AI]
-2. (EMAIL)[mailto:ariel.rubi@gmail.com?subject=jarvis%20sent%20me%20to%20you%20about%20AI]
+1. [WhatsApp](https://wa.me/972542634114?text=jarvis%20sent%20me%20to%20you%20about%20AI)
+2. [EMAIL])mailto:ariel.rubi@gmail.com?subject=jarvis%20sent%20me%20to%20you%20about%20AI)
 
 
 

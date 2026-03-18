@@ -39,6 +39,8 @@ install ollama with openclaw:
 2. get model and test - `ollama run qwen3.5:cloud` (exit with ctrl + d)
 3. add to models list - `openclaw onboard` - chooose ollama provider
 
+[NEW ollama page in docs](https://docs.openclaw.ai/providers/ollama)
+
 
 need more help? contact me! (paid serviec with ♥)
 1. [WhatsApp](https://wa.me/972542634114?text=jarvis%20sent%20me%20to%20you%20about%20AI)

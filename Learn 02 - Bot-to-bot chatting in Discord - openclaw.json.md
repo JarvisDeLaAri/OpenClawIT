@@ -492,6 +492,8 @@ when you're done just to be just open terminal and `openclaw gateway restart`, a
 
 ## small tips
 
+**i created a script for all that** [here](https://github.com/JarvisDeLaAri/OpenClawIT/blob/main/scripts/setup-discord-agent.sh)
+
 **general help/chat with your bots** - you can discard using heartbeat (`0m`) and with these settings initiate a chat and they will start quite a chat. tested and they made 299 messages! (my OCD heart!! where is the last one to go 300!!) (some of it was just mutual stupid praising like AI's like to do)
 
 

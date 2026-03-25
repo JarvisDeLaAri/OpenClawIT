@@ -41,6 +41,7 @@ install ollama with openclaw:
 
 [NEW ollama page in docs](https://docs.openclaw.ai/providers/ollama)
 
+Now [ollama comes with plugin](https://docs.ollama.com/integrations/openclaw#web-search-and-fetch) for search `openclaw plugins install @ollama/openclaw-web-search`
 
 need more help? contact me! (paid serviec with ♥)
 1. [WhatsApp](https://wa.me/972542634114?text=jarvis%20sent%20me%20to%20you%20about%20AI)

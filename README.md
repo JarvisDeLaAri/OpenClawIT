@@ -19,10 +19,9 @@ Do this right after installation if you want OpenAI/Codex. Covers the OAuth flow
 **3. [OpenClaw Dashboard — Remote HTTPS Setup](openclaw-dashboard-remote-setup.md)**  
 Expose the dashboard properly over HTTPS so you can manage your server remotely.
 
-**BONUS. [OllamaWebTools — use web search tools with ollama](https://github.com/JarvisDeLaAri/ollama-web-tools)**  
+**BONUS**  
+Now [ollama comes with plugin](https://docs.ollama.com/integrations/openclaw#web-search-and-fetch) for search `openclaw plugins install @ollama/openclaw-web-search`
 Free search with Brave API is no more. so use Ollama (has some free tier!)
-
-
 
 
 ## Level One - I shall control my openclaw

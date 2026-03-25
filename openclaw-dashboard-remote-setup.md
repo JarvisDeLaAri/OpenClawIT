@@ -23,7 +23,7 @@ i need your help
 2. enable 30080 https with Self-signed cert
 3. allow origin for gateway https://<your ip>:30080 in your settings  openclaw.json
 4. allow the port with ufw
-5. approve the pairing
+5. approve the pairing device
 
 ```
 

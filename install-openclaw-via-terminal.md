@@ -16,7 +16,7 @@ go to hostinger and purchase ubuntu server [my hostinger discount](https://www.h
 * legit & super easy - [ollama.com plan](https://ollama.com/blog/openclaw)
 * legit - [synthetic.new](https://synthetic.new/?referral=RgalAYbTxY6qzQ8)
 
-
+Now [ollama comes with plugin](https://docs.ollama.com/integrations/openclaw#web-search-and-fetch) for search `openclaw plugins install @ollama/openclaw-web-search`
 
 
 ## install openclaw

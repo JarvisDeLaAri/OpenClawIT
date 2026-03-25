@@ -11,7 +11,7 @@ you should find your IP address and choose a port (like 30080, anything between 
 ## ask this from your agent
 
 ```
-http://localhost:18789/#token=eb98c1c5adbb8448db25e0959454508b81c98e6b18562ca9
+http://localhost:18789/#token=....
 
 this is the openclaw native dashboard
 but you live in a VPS
@@ -19,9 +19,9 @@ so i want to open this dashboard to outside
 
 i need your help
 
-1. port forward this to 28789
-2. enable 28789 https with Self-signed cert
-3. allow origin for gateway https://72.60.32.127:28789 in your settings
+1. port forward this to 30080
+2. enable 30080 https with Self-signed cert
+3. allow origin for gateway https://<your ip>:30080 in your settings
 4. allow the port with ufw
 5. approve the pairing
 

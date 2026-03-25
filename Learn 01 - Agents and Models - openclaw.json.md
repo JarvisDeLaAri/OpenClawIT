@@ -111,6 +111,8 @@ they are basically the same, just a different secret value to send to the AI end
 ### other subscription
 there are other subscription providers that will allow you to do whatever you want, providing open souce models (usually the chinese), 3rd party, customers, you name it, 2 of those are [ollama](https://ollama.com/blog/openclaw) and [synthetic.new](https://synthetic.new/landing/home?referral=55F5WqcExnQfLwi). 
 
+Now [ollama comes with plugin](https://docs.ollama.com/integrations/openclaw#web-search-and-fetch) for search `openclaw plugins install @ollama/openclaw-web-search`
+
 to my understanding sythetic is maybe the cheapest, and ollama is the easiest to use as they let you to launch openclaw with their special command with model of your choice.
 
 i am sure there are many more of those. i did not read the ToS of immidiate providers like [kimi.com](https://www.kimi.com/). BTW they provide openclaw-cloud thing.

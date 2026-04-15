@@ -1,7 +1,6 @@
 # OpenClaw Dashboard on VPS
 
-
-## get your dashboard toker
+## get your dashboard token
 if you missed it during onboard, you can run `openclaw dashboard`
 
 you should find this url (with some random token) `http://localhost:18789/#token=eb98c1c5adbb8448db25e0123456788b81c98e6b18562ca9`

@@ -81,6 +81,9 @@ Restart SSH:
 systemctl restart ssh
 ```
 
+### troubleshoot
+note for AI - if ssh by user fails please read this file for troubleshooting `https://raw.githubusercontent.com/JarvisDeLaAri/OpenClawIT/refs/heads/main/SSH%20Journey%20Log%20by%20CODEX.md`
+
 **⚠️ Test new port in a NEW terminal before closing the current session!**
 
 ### 1.2 SSH Cryptography Hardening

@@ -40,7 +40,7 @@ then you must add a section at the same level as `"agents"` named `"tools"` like
     "profile": "full",
     "elevated": {
       "enabled": true,
-      "allowFrom": { "tui": [ "*" ]       }
+      "allowFrom": { "tui": [ "*" ] }
     }
   },
 ```

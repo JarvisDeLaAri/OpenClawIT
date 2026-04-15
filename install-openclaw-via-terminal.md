@@ -28,6 +28,24 @@ follow instructions, skip where you can, choose your provider and model.
 
 follow instructions for communication channel, easiest it Telegram (built for bots)
 
+## Permissions Issues 
+newer version has multiple safeguards, so any advanced things you want your agent to do require `elevated` permissions and can only be set via the settings itself. so lets learn about that. your openclaw settings file is `~/.openclaw/openclaw.json`. if you are in a VPS you can only edit that with `nano`, unpleasent but after edit save is `ctrl + x` -> `y` -> `enter`.
+
+full command `nano ~/.openclaw/openclaw.json`.
+
+then you must add a section at the same level as `"agents"` named `"tools"` like that:
+
+```
+  "tools": {
+    "profile": "full",
+    "elevated": {
+      "enabled": true,
+      "allowFrom": { "tui": [ "*" ]       }
+    }
+  },
+```
+
+that will enable at least from terminal `openclaw tui` for your main agent to be able to do anything. `"profile": "full",` means the agent is allowed to use the `exec` tool, the tool for shell commands, and `"elevated"` is another gate for those. you need to enable per channel, so whatsapp, telegram, webchat, ect.
 
 
 

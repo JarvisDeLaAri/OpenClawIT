@@ -16,3 +16,14 @@
     },
   }
 }
+
+
+
+
+maybe more
+
+`openclaw config set tools.exec.host host`
+
+maybe test
+
+`openclaw sessions --active --json`

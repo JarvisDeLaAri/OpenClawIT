@@ -57,6 +57,15 @@ HuggingFace `faster-whisper` start from tiny (75mb) up to large-v2 (+3GB). ask y
 
 
 
+# login to whatsapp if failed at onbboard 
+
+* login (get QR code) `openclaw channels login --channel whatsapp`
+* list pairing (make sure its there, and its yours) `openclaw devices list`
+* approve the pairing (if only 1) `openclaw devices approve --latest`
+* initiate connection if agent dont react `openclaw message send --channel whatsapp --target +123456 --message "hi"`
+* send media file `openclaw message send --channel whatsapp --target +123456 --media /tmp/openclaw/file.pdf --message "here's the file"`
+
+HAS RESTRICTIONS only from pre-defined folders and MEME types (look at docs)  
 
 
 

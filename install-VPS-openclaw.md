@@ -50,6 +50,17 @@ then you must add a section at the same level as `"agents"` named `"tools"` like
   },
 ```
 
+OR
+
+```
+openclaw config set tools.profile full
+openclaw config set tools.exec.host gateway
+openclaw config set tools.exec.security full
+openclaw config set tools.exec.ask off
+openclaw gateway restart
+openclaw tui --session main
+```
+
 more [here](https://github.com/JarvisDeLaAri/OpenClawIT/blob/main/telegram.super-admin.mode.json)
 
 that will enable at least from terminal `openclaw tui` for your main agent to be able to do anything. `"profile": "full",` means the agent is allowed to use the `exec` tool, the tool for shell commands, and `"elevated"` is another gate for those. you need to enable per channel, so whatsapp, telegram, webchat, ect.

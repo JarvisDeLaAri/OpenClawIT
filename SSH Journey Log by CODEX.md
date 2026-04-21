@@ -217,3 +217,20 @@ This was painful because several independent issues overlapped:
 - and most importantly socket-activation SSH behavior causing misleading port status.
 
 Once `ssh.socket` was removed from the path and direct `ssh.service` was used, behavior became deterministic and stable.
+
+
+
+## another debug session results for enabling ssh
+Root cause was ssh.socket binding in a way that ended up IPv6-only for your     
+override, so IPv4 connections to 187.77.77.223 got reset/timeouts.              
+                                                                                
+I changed and applied:                                                          
+- Socket bind explicitly to both IPv4 and IPv6 on both ports:                   
+    - 0.0.0.0:22, [::]:22                                                       
+    - 0.0.0.0:22222, [::]:22222                                                 
+- SSH auth:                                                                     
+    - PasswordAuthentication yes                                                
+    - PermitRootLogin yes (you asked for password login)                        
+    - AllowUsers root ubuntu tsuri                                              
+- Restarted ssh cleanly, now listening on all 4 sockets.                        
+              

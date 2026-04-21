@@ -41,7 +41,12 @@ then you must add a section at the same level as `"agents"` named `"tools"` like
     "elevated": {
       "enabled": true,
       "allowFrom": { "tui": [ "*" ] }
-    }
+    },
+    "exec": {
+      "security": "full",
+      "ask": "off",
+      "host": "gateway"
+    },
   },
 ```
 

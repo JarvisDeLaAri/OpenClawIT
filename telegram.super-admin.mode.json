@@ -27,3 +27,6 @@ maybe more
 maybe test
 
 `openclaw sessions --active --json`
+
+
+also if you have `~/.openclaw/exec-approvals.json` file, the stronger settings wins

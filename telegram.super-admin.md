@@ -1,5 +1,7 @@
-//DANGER - if ANYONE gets your telegram bot with these settings he immediately has full control on your entire server!! 
+
 EXAMPLE for settings for telegram to enable full exec
+
+DANGER - if ANYONE gets your telegram bot with these settings he immediately has full control on your entire server!! 
 ```
 {
   tools: {

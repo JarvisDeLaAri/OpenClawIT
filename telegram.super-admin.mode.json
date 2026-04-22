@@ -1,4 +1,6 @@
 //DANGER - if ANYONE gets your telegram bot with these settings he immediately has full control on your entire server!! 
+EXAMPLE for settings for telegram to enable full exec
+```
 {
   tools: {
     profile: 'full',
@@ -16,17 +18,251 @@
     },
   }
 }
+```
 
+might also need 
+```
+    telegram: {
+      capabilities: {
+        inlineButtons: 'dm',
+      },
+      execApprovals: {
+        enabled: true,
+        approvers: [
+          0123456789,
+        ],
+        agentFilter: [
+          'main',
+        ],
+        target: 'both',
+      },
+```
 
-you should later make main agent just an admin, or make another agent admin, and give other defaults to working agents
+# Full Exec Pipeline
 
-maybe more
+End-to-end flow chart of the OpenClaw exec pipeline, from tool invocation to execution decision.
 
-`openclaw config set tools.exec.host host`
+```mermaid
+flowchart TB
+    subgraph INPUT["📥 Input: exec Tool Call"]
+        CMD["Command<br/>host=auto|gateway|node|sandbox<br/>security=deny|allowlist|full<br/>ask=off|on-miss|always"]
+    end
 
-maybe test
+    subgraph PROFILE["🔧 Stage 1: tools.profile"]
+        PROFILE_LOOKUP["Lookup base profile<br/>(from openclaw.json)"]
+        PROFILE_MERGE["Merge profile allow/deny"]
+    end
 
-`openclaw sessions --active --json`
+    subgraph POLICY["⚙️ Stage 2: Exec Policy"]
+        GLOBAL["tools.exec<br/>(global)"]
+        AGENT["agents.list[id].tools.exec<br/>(per-agent)"]
+        MERGE_POLICY["Merge: requested<br/>security + ask"]
+    end
 
+    subgraph APPROVALS_FILE["📄 Stage 3: exec-approvals.json"]
+        AF_DEFAULTS["defaults:<br/>security, ask, askFallback"]
+        AF_AGENTS["agents:<br/>per-agent overrides"]
+        AF_SOCKET["socket for<br/>approval daemon"]
+    end
 
-also if you have `~/.openclaw/exec-approvals.json` file, the stronger settings wins
+    subgraph ELEVATED["🚪 Stage 4: Elevated Gate"]
+        ELEVATED_CHECK["tools.elevated<br/>enabled?"]
+        SENDER_CHECK["sender in<br/>elevatedSenders?"]
+    end
+
+    subgraph ALLOWLIST["✅ Stage 5: Allowlist Matching"]
+        SAFE_BIN["Safe bin?<br/>(ls, echo, etc)"]
+        DENY_LIST["In deny list?"]
+        ALLOW_LIST["In allow list?"]
+        PATTERN["Pattern match?"]
+    end
+
+    subgraph APPROVAL["🤝 Stage 6: Approval Flow"]
+        ASK_MODE["ask mode check"]
+        APPROVAL_REQ["Create approval request"]
+        APPROVAL_PEND["Pending...<br/>(timeout)"]
+        APPROVAL_DECIDE["User approves/denies"]
+    end
+
+    subgraph DECISION["🎯 Stage 7: Decision"]
+        DENY["❌ DENY<br/>Return error"]
+        BYPASS["⚡ BYPASS<br/>Execute directly"]
+        ASK["❓ ASK<br/>Wait for approval"]
+    end
+
+    subgraph EXEC["🔥 Stage 8: Execution"]
+        EXEC_RUN["Run command<br/>via exec-wrapper"]
+        EXEC_RESULT["Return output"]
+    end
+
+    %% Input to Profile
+    INPUT --> PROFILE_LOOKUP
+    PROFILE_LOOKUP --> PROFILE_MERGE
+
+    %% Profile to Policy
+    PROFILE_MERGE --> POLICY
+    GLOBAL --> MERGE_POLICY
+    AGENT --> MERGE_POLICY
+
+    %% Policy to Approvals File
+    MERGE_POLICY --> APPROVALS_FILE
+    AF_DEFAULTS --> ELEVATED_CHECK
+    AF_AGENTS --> ELEVATED_CHECK
+    AF_SOCKET -.-> APPROVAL_REQ
+
+    %% Elevated Gate
+    ELEVATED_CHECK -->|yes| SENDER_CHECK
+    ELEVATED_CHECK -->|no| ALLOW_LIST
+    SENDER_CHECK -->|yes| ALLOW_LIST
+    SENDER_CHECK -->|no| ASK_MODE
+
+    %% Allowlist
+    SAFE_BIN -->|yes| BYPASS
+    SAFE_BIN -->|no| DENY_LIST
+    DENY_LIST -->|yes| DENY
+    DENY_LIST -->|no| ALLOW_LIST
+    ALLOW_LIST -->|yes| PATTERN
+    ALLOW_LIST -->|no| ASK_MODE
+
+    PATTERN -->|match| BYPASS
+    PATTERN -->|no match| ASK_MODE
+
+    %% Approval Flow
+    ASK_MODE -->|ask=off| DENY
+    ASK_MODE -->|ask=on-miss| ALLOW_LIST
+    ASK_MODE -->|ask=always| APPROVAL_REQ
+
+    APPROVAL_REQ --> APPROVAL_PEND
+    APPROVAL_PEND -->|timeout| DENY
+    APPROVAL_PEND --> APPROVAL_DECIDE
+
+    APPROVAL_DECIDE -->|approve| BYPASS
+    APPROVAL_DECIDE -->|deny| DENY
+
+    %% Execution
+    BYPASS --> EXEC_RUN
+    EXEC_RUN --> EXEC_RESULT
+```
+
+---
+
+## Stage Details
+
+### Stage 1: tools.profile
+- **Base profile** from `openclaw.json` or defaults
+- Provides foundational allow/deny lists
+- Merged with subsequent per-agent configs
+
+### Stage 2: Exec Policy
+Two layers of configuration:
+
+| Layer | Path | Applies To |
+|-------|------|------------|
+| Global | `tools.exec` | All agents |
+| Per-agent | `agents.list[id].tools.exec` | Specific agent |
+
+**Fields:**
+- `security`: `deny` (default) | `allowlist` | `full`
+- `ask`: `off` | `on-miss` (default) | `always`
+- `askFallback`: Security mode when ask times out
+
+### Stage 3: exec-approvals.json
+Located at `~/.openclaw/exec-approvals.json`
+
+```json
+{
+  "version": 1,
+  "socket": { "path": "...", "token": "..." },
+  "defaults": { "security": "full", "ask": "off" },
+  "agents": {
+    "trendy": { "allowlist": [], "security": "full", "ask": "off" }
+  }
+}
+```
+
+**Can override/tighten** `tools.exec.*` settings from openclaw.json.
+
+### Stage 4: Elevated Gate
+- Checked after policy resolution
+- If `tools.elevated.enabled: false` → skip to allowlist
+- If enabled → sender must be in `elevatedSenders` allowlist
+
+### Stage 5: Allowlist Matching
+Order of checks:
+1. **Safe bin**: Built-in list (ls, echo, cat, etc.) → bypass
+2. **Deny list**: Pattern match → deny immediately
+3. **Allow list**: Pattern match → bypass
+4. **Fallback**: No match → go to ask mode
+
+### Stage 6: Approval Flow
+Based on `ask` mode:
+
+| ask value | Behavior |
+|-----------|----------|
+| `off` | Deny on no allowlist match |
+| `on-miss` | Approve if in allowlist, else ask |
+| `always` | Always ask before execution |
+
+Approval requests timeout (default: 60s) and resolve as deny.
+
+### Stage 7: Decision
+- **DENY**: Return exec error to agent
+- **BYPASS**: Execute command directly
+- **ASK**: Wait for user decision (approve/deny)
+
+### Stage 8: Execution
+- Uses exec-wrapper with resolved security context
+- Returns stdout/stderr to agent
+
+---
+
+## Policy Merge Priority
+
+```
+effective = max(restrictiveness)
+```
+
+Security: `deny` < `allowlist` < `full` (most permissive wins)
+Ask: `off` < `on-miss` < `always` (most aggressive wins)
+
+---
+
+## Quick Access
+
+### Full Exec Access (Bypass All Approvals)
+
+```bash
+# 1. Set full profile
+openclaw config set tools.profile full
+
+# 2. Set exec host to gateway
+openclaw config set tools.exec.host gateway
+
+# 3. Set security to full
+openclaw config set tools.exec.security full
+
+# 4. Disable approval prompts
+openclaw config set tools.exec.ask off
+
+# 5. Restart gateway
+openclaw gateway restart
+
+# 6. Enter TUI
+openclaw tui --session main
+```
+
+### Other Quick Commands
+
+```bash
+# Check current exec policy
+openclaw approvals status
+
+# View allowlist
+openclaw approvals list
+
+# Add an allowlist entry
+openclaw approvals allow "myagent" --pattern "ls *"
+
+# Test a command (dry run)
+openclaw exec --dry-run "ls -la"
+```

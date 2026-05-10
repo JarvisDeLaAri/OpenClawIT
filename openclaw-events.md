@@ -7,7 +7,20 @@ tested with Whatsapp & openclaw-control-ui (web dashboard GUI)
 
 messages from GUI chat always has `event.senderId` and `ctx.senderId` equal to `openclaw-control-ui`.
 
+```
+const VIP_PHONES = ["+972542634114"];
+const VIP_AGENTS: string[] = ["main"];
 
+function isVIP(event: unknown): boolean {
+    const e = event as any;
+    if (e?.senderId && VIP_PHONES.includes(e.senderId)) return true;
+    if (typeof e?.sessionKey === "string") {
+        const match = e.sessionKey.match(/^agent:(.+)/);
+        if (match && VIP_AGENTS.includes(match[1])) return true;
+    }
+    return false;
+}
+```
 
 
 ## session start

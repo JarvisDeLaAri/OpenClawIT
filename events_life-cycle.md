@@ -7,6 +7,8 @@ tested with Whatsapp & openclaw-control-ui (web dashboard GUI)
 
 messages from GUI chat always has `event.senderId` and `ctx.senderId` equal to `openclaw-control-ui`.
 
+use this fo exclude specific wa# or agent
+
 ```
 const VIP_PHONES = ["+972542634114"];
 const VIP_AGENTS: string[] = ["main"];

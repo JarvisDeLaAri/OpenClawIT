@@ -40,12 +40,10 @@ then you must add a section at the same level as `"agents"` named `"tools"` like
     "profile": "full",
     "elevated": {
       "enabled": true,
-      "allowFrom": { "tui": [ "*" ] }
     },
     "exec": {
       "security": "full",
       "ask": "off",
-      "host": "gateway"
     },
   },
 ```
@@ -54,7 +52,6 @@ OR
 
 ```
 openclaw config set tools.profile full
-openclaw config set tools.exec.host gateway
 openclaw config set tools.exec.security full
 openclaw config set tools.exec.ask off
 openclaw gateway restart

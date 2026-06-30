@@ -1,4 +1,4 @@
-# OpenClaw Memory Setup Manual for an Identical VPS (Full Runbook)
+# OpenClaw Memory (simple free RAG) Setup Manual for an Identical VPS (Full Runbook)
 
 ## 0) Purpose
 
@@ -63,6 +63,7 @@ This runbook assumes the target VPS is effectively identical (RAM class, OpenCla
 - Persistent swap file configured: `/swapfile`
 - Size: 16G
 - Active and mounted on boot (`/etc/fstab`)
+**update** must use swap but can be 4gb. if keep failing use 16 for initial index then downgrade to 4.
 
 ### Index target (main agent)
 - Provider: `ollama`
@@ -72,6 +73,7 @@ This runbook assumes the target VPS is effectively identical (RAM class, OpenCla
   - `Indexed: 133/133 files`
   - `Dirty: no`
   - `Vector: ready`
+
 
 ---
 
@@ -90,7 +92,7 @@ Model facts:
   - params: ~595.78M
 
 Practical takeaway:
-- Arctic is faster/lighter.
+- Arctic is faster/lighter. (**update** didnt actually worked, but have not tried with swap)
 - Qwen 0.6b is heavier/slower but generally better recall quality headroom.
 
 ## 3.2 Why chunking 128/16
@@ -102,7 +104,7 @@ This setting was selected for stability on 7.8G RAM while preserving overlap con
 
 ## 3.3 Why 16G swap if swap may stay unused
 
-Swap is a **safety net**, not a goal.
+Swap is a **safety net**, not a goal. (**update** but is requirement for said setup)
 - If peak RAM stays below physical memory, swap can remain 0 used, and that is good.
 - Without swap, short-lived spikes can trigger OOM kills.
 - With swap present, the kernel has more options under transient pressure.
